@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
 	<PublishDir>$(OutDir)\_PublishedWebsites\NetCoreWebApp\</PublishDir>
+	<StartupObject></StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
