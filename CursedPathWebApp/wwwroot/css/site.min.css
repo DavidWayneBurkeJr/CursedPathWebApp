@@ -5,6 +5,18 @@ body {
     padding-bottom: 20px;
 }
 
+#page-wrap {
+    width: 90%;
+    margin: 51px auto;
+    position: relative;
+}
+}
+
+#sidebar {
+    width: 190px;
+    float: right;
+}
+
 .navbar {
     margin-bottom: 0;
     height: 100px;
