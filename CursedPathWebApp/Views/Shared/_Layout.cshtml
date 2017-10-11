@@ -18,7 +18,9 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
     </environment>
 </head>
+
 <body>
+    
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -28,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Movies" asp-action="Index" class="navbar-brand">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
                     <img src="~/images/CursedPath.jpg" class="img-responsive" alt="Cursed Path" height="76" width="100"> 
                 </a>
             </div>
@@ -40,16 +42,25 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">HoME</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">aBoUT</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">CoNtaCT</a></li>
+
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
-    <div id="page-wrap">
+    <div id="sidebar">
+        <div id="slideout">
+            <iframe style="border: 0; width: 350px; height: 588px;" src="https://bandcamp.com/EmbeddedPlayer/album=3478440568/size=large/bgcol=333333/linkcol=e32c14/transparent=true/" seamless><a href="http://cursedpath.bandcamp.com/album/demo-2016">DEMO 2016 by Cursed Path</a></iframe>
+        </div>
+        <button type="submit" style="border: 0; background: transparent">
+            <img src="~/images/PullOut.png" width="74" height="100">
+            <img />
+        </button>
+    </div>
+    
+
         <div class="container body-content">
-            <div id="sidebar" style="margin-top: 0px">
-                <iframe style="border: 0; width: 250px; height: 392px;" src="https://bandcamp.com/EmbeddedPlayer/album=3478440568/size=large/bgcol=333333/linkcol=e32c14/tracklist=false/transparent=true/" seamless><a href="http://cursedpath.bandcamp.com/album/demo-2016">DEMO 2016 by Cursed Path</a></iframe>
-            </div>
+            
             @RenderBody()
             <hr />
             <footer>
@@ -80,6 +91,5 @@
         
 
         @RenderSection("Scripts", required: false)
-    </div>
 </body>
 </html>

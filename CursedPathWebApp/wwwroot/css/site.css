@@ -1,26 +1,37 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Covered+By+Your+Grace');
+﻿@import url('https://fonts.googleapis.com/css?family=Schoolbell');
 body {
     background-color: #1c1a1a;
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
+
 #page-wrap {
     width: 90%;
     margin: 51px auto;
     position: relative;
 }
-}
 
 #sidebar {
-    width: 190px;
+    width: 74px;
+    height: 100px;
     float: right;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    box-shadow: 30px 10px 10px 10px #000000;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
 }
 
 .navbar {
     margin-bottom: 0;
     height: 100px;
 }
+
+
 
 .navbar-inverse {
     background: #000000;
@@ -29,12 +40,16 @@ body {
     -webkit-box-shadow: 0 8px 6px -6px #000000;
     -moz-box-shadow: 0 8px 6px -6px #000000;
     box-shadow: 0 8px 6px -6px #000000;
-    font-family: 'Covered By Your Grace', cursive;
+    font-family: 'Schoolbell', cursive;
     font-size: larger;
     vertical-align: middle;
 }
+.navbar-collapse.collapse {
+    max-height: 100px;
+}
     .navbar-inverse .navbar-nav li a:hover {
         background: #1c1a1a;
+        max-height: 100px;
     }
     .navbar-inverse .navbar-nav li a{
         line-height: 100px;
@@ -42,6 +57,33 @@ body {
 .navbar-brand {
     padding-top: 10px;
     height: inherit;
+}
+.navbar-nav{
+    max-height: 100px;
+}
+#slideout {
+    background: #000000;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    color: #000000;
+    position: fixed;
+    top: 100px;
+    right: -520px;
+    width: 350px;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    z-index: 100;
+}
+
+    #slideout.on {
+        right: 0;
+        z-index: 100;
+    }
+
+#sidebar.on {
+    right: 350px;
+    z-index: 100;
 }
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -73,3 +115,5 @@ body {
         display: none;
     }
 }
+
+
