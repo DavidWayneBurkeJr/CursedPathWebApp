@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CursedPathWebApp.Data;
-using CursedPathWebApp.Models;
 using CursedPathWebApp.Services;
 using Microsoft.AspNetCore.Identity;
 
@@ -44,7 +43,7 @@ namespace CursedPathWebApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("UserDatabase")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<Data.ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -82,7 +81,7 @@ namespace CursedPathWebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=ApplicationRole}/{action=Index}/{id?}");
             });
         }
     }
