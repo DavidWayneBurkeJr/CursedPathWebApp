@@ -6,6 +6,28 @@ body {
     color:gray;
 }
 
+.glyphicon-off::before {
+    text-shadow: 0 0 5px #9d9d9d;
+}
+
+.glyphButton {
+    position: absolute;
+    margin-left: 25px;
+    left: -1px;
+    top: 25px;
+    color: white;
+    background-color: black;
+    border: black;
+}
+}
+
+.btn btn-link navbar-btn navbar-link:hover{
+    color:darkred;
+}
+.center {
+    text-align: center;
+}
+
 iframe{
     margin: auto;
 }

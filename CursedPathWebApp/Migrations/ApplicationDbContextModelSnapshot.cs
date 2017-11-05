@@ -4,8 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
 namespace CursedPathWebApp.Data.Migrations
@@ -107,6 +105,42 @@ namespace CursedPathWebApp.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("CursedPathWebApp.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DatePosted");
+
+                    b.Property<string>("Message");
+
+                    b.Property<int?>("ParentPostId");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentPostId");
+
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("CursedPathWebApp.Models.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DatePosted");
+
+                    b.Property<string>("Message");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Posts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -200,6 +234,13 @@ namespace CursedPathWebApp.Data.Migrations
                     b.HasOne("CursedPathWebApp.Data.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("CursedPathWebApp.Models.Comment", b =>
+                {
+                    b.HasOne("CursedPathWebApp.Models.Post", "ParentPost")
+                        .WithMany("Comments")
+                        .HasForeignKey("ParentPostId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

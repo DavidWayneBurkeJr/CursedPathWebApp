@@ -1,5 +1,5 @@
 ﻿// Write your JavaScript code.
-$('button').click(function () {
+$('#pullBtn').click(function () {
     $('#slideout').toggleClass('on');
     $('#sidebar').toggleClass('on');
 });

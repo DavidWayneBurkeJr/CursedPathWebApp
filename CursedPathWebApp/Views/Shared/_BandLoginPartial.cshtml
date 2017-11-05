@@ -4,23 +4,21 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-@if (SignInManager.IsSignedIn(User))
+@if (User.IsInRole("Admin") || User.IsInRole("Band Member"))
 {
-    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-            </li>
-        </ul>
-    </form>
-}
-else
-{
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Schedule</a>
+        <a asp-area="" asp-controller="Band" asp-action="chat">Message Board</a>
+        <a href="#">Personal Notes</a>
+    </div>
     <ul class="nav navbar-nav navbar-left">
-        <li><a asp-area="" asp-controller="Account" asp-action="Register">rEGisTer</a></li>
-        
+        <li><a asp-area="" asp-controller="Band" asp-action="Index">
+            <i class="glyphicon glyphicon-cd"></i>
+            <b>bANd PagE</b>
+            </a>
+        </li>
     </ul>
+    <button class="glyphButton" onclick="openNav()"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+    
 }

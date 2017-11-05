@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CursedPathWebApp.Data;
+using CursedPathWebApp.Hubs;
+using CursedPathWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Sockets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using CursedPathWebApp.Data;
-using CursedPathWebApp.Services;
-using Microsoft.AspNetCore.Identity;
-
-namespace CursedPathWebApp
-{
-    public class Startup
+using System;
+public class Startup
     {
         public Startup(IHostingEnvironment env)
         {
@@ -43,7 +39,7 @@ namespace CursedPathWebApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("UserDatabase")));
 
-            services.AddIdentity<Data.ApplicationUser, ApplicationRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -52,38 +48,42 @@ namespace CursedPathWebApp
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-        }
+            services.AddSignalR();
+        
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
-            app.UseStaticFiles();
-
-            app.UseIdentity();
-
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
-            
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=ApplicationRole}/{action=Index}/{id?}");
-            });
-        }
     }
-}
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+    {
+        loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+        loggerFactory.AddDebug();
+
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
+            app.UseBrowserLink();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Home/Error");
+        }
+
+        app.UseStaticFiles();
+
+        app.UseIdentity();
+
+        //  Add external authentication middleware below.To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+        app.UseMvc(routes =>
+        {
+            routes.MapRoute(
+                name: "default",
+                template: "{controller=ApplicationRole}/{action=Index}/{id?}");
+        });
+        app.UseSignalR();
+        app.UseWebSockets();
+    }
+    }
 
