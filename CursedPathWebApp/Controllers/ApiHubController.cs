@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Infrastructure;
 using Microsoft.AspNetCore.SignalR.Hubs;
 
-namespace Chatazon.Controllers
+namespace CursedPathWebApp.Controllers
 {
     public abstract class ApiHubController<T> : Controller
         where T : Hub

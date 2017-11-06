@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Chat";
 }
 
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
 <script src="/signalr/hubs"></script>
-
+<h1>Messages</h1>
 <input id="textInput" type="text" placeholder="Say hello!" />
 
 <button class="btn btn-primary" id="publishPostButton">Send</button>
@@ -47,7 +47,7 @@
                 'Content-Type': 'application/json'
             },
             type: 'POST',
-            url: '/chatroom/',
+            url: '/chat/',
             data: JSON.stringify(post),
             dataType: 'json'
         }).fail(function (e) {

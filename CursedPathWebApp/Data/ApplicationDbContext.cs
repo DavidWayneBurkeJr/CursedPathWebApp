@@ -49,7 +49,7 @@ namespace CursedPathWebApp.Data
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
-                
+
         }
     }
 }

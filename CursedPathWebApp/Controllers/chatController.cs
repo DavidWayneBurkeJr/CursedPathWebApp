@@ -13,17 +13,17 @@ using Microsoft.AspNetCore.SignalR.Infrastructure;
 using Microsoft.AspNetCore.SignalR.Server;
 using CursedPathWebApp.Data;
 using CursedPathWebApp.Models;
-using Chatazon.Hubs;
+using CursedPathWebApp.Hubs;
 
-namespace Chatazon.Controllers
+namespace CursedPathWebApp.Controllers
 {
     [Produces("application/json")]
-    public class ChatroomController : ApiHubController<Broadcaster>
+    public class ChatController : ApiHubController<Broadcaster>
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private ApplicationDbContext _context;
 
-        public ChatroomController(UserManager<ApplicationUser> userManager, ApplicationDbContext ctx, IConnectionManager connectionManager)
+        public ChatController(UserManager<ApplicationUser> userManager, ApplicationDbContext ctx, IConnectionManager connectionManager)
         : base(connectionManager)
         {
             _userManager = userManager;
@@ -36,7 +36,7 @@ namespace Chatazon.Controllers
         [Route("[controller]")]
         public async Task<IActionResult> Get()
         {
-            Post[] messages = await _context.Posts.Include(m => m.Username).ToArrayAsync();
+            Post[] messages = await _context.Posts.ToArrayAsync();
             List<MessageViewModel> model = new List<MessageViewModel>();
             foreach (Post msg in messages)
             {

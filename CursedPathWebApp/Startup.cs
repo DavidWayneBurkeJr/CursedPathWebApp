@@ -11,45 +11,58 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using Newtonsoft.Json;
+
 public class Startup
+{
+    public Startup(IHostingEnvironment env)
     {
-        public Startup(IHostingEnvironment env)
+        var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+        if (env.IsDevelopment())
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets("aspnet-CursedPathWebApp-0f2df5e4-57d2-4982-9b44-70bbf369d2c0");
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
+            builder.AddUserSecrets("aspnet-CursedPathWebApp-0f2df5e4-57d2-4982-9b44-70bbf369d2c0");
         }
 
-        public IConfigurationRoot Configuration { get; }
+        builder.AddEnvironmentVariables();
+        Configuration = builder.Build();
+    }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Add framework services.
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("UserDatabase")));
+    public IConfigurationRoot Configuration { get; }
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // Add framework services.
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("UserDatabase")));
 
-            services.AddMvc();
+        services.AddIdentity<ApplicationUser, ApplicationRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddSignalR();
-        
+
+        var settings = new JsonSerializerSettings();
+        settings.ContractResolver = new SignalRContractResolver();
+
+        var serializer = JsonSerializer.Create(settings);
+
+        services.Add(new ServiceDescriptor(typeof(JsonSerializer),
+                                        provider => serializer,
+ServiceLifetime.Transient));
+
+
+        services.AddMvc();
+
+        // Add application services.
+        services.AddTransient<IEmailSender, AuthMessageSender>();
+        services.AddTransient<ISmsSender, AuthMessageSender>();
+        services.AddSignalR(options => options.Hubs.EnableDetailedErrors = true);
+
 
 
     }
@@ -85,5 +98,5 @@ public class Startup
         app.UseSignalR();
         app.UseWebSockets();
     }
-    }
+}
 

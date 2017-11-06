@@ -12,7 +12,7 @@ namespace CursedPathWebApp.Controllers
         {
             return View();
         }
-        public IActionResult chat()
+        public IActionResult Chat()
         {
             return View();
         }

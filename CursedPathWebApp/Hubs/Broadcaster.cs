@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.SignalR;
 using CursedPathWebApp.Models;
 
-namespace Chatazon.Hubs
+namespace CursedPathWebApp.Hubs
 {
     public class Broadcaster : Hub<IBroadcaster>
     {

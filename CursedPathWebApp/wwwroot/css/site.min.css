@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Schoolbell');
+
 body {
     background-color: #1c1a1a;
     padding-top: 50px;
     padding-bottom: 20px;
-    color:gray;
+    color: gray;
 }
 
 .glyphicon-off::before {
@@ -19,16 +20,69 @@ body {
     background-color: black;
     border: black;
 }
-}
 
-.btn btn-link navbar-btn navbar-link:hover{
-    color:darkred;
-}
 .center {
     text-align: center;
 }
 
-iframe{
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+    /* The navigation menu links */
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s
+    }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover, .offcanvas a:focus {
+            color: #f1f1f1;
+        }
+
+    /* Position and style the close button (top right corner) */
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+}
+
+
+
+iframe {
     margin: auto;
 }
 
@@ -55,7 +109,10 @@ iframe{
 .navbar {
     margin-bottom: 0;
     height: 100px;
+    position: absolute;
 }
+
+
 
 .navbar-inverse {
     background: #000000;
@@ -69,25 +126,28 @@ iframe{
     vertical-align: middle;
 }
 
-    .navbar-inverse .navbar-nav li a:hover {
-        background: #1c1a1a;
-        max-height: 100px;
-    }
-
-    .navbar-inverse .navbar-nav li a {
-        line-height: 100px;
-    }
-    .navbar-collapse.collapse{
-        max-height: 100px;
-    }
-.navbar-nav {
+.navbar-collapse.collapse {
     max-height: 100px;
+}
+
+.navbar-inverse .navbar-nav li a:hover {
+    background: #1c1a1a;
+    max-height: 100px;
+}
+
+.navbar-inverse .navbar-nav li a {
+    line-height: 100px;
 }
 
 .navbar-brand {
     padding-top: 10px;
     height: inherit;
 }
+
+.navbar-nav {
+    max-height: 100px;
+}
+
 #slideout {
     background: #000000;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
@@ -122,6 +182,7 @@ iframe{
     box-shadow: 0px 50px 50px 1px #000000;
 }
 
+
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
@@ -145,3 +206,41 @@ iframe{
         display: none;
     }
 }
+
+
+.pad-bottom {
+    margin-bottom: 10px;
+}
+
+.no-pad-bottom {
+    margin-bottom: 0;
+}
+
+.new-post {
+    background-color: #c9e0fc;
+    padding: 15px 10px;
+}
+
+.username {
+    font-weight: bold;
+    color: #ff6a00;
+}
+
+.commentor {
+    font-weight: bold;
+    color: #004bff;
+}
+
+.posts li .date-posted {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.posts li {
+    border-bottom: 1px solid #CCC;
+    padding: 15px 0;
+}
+
+    .posts li:first-child {
+        border-top: 1px solid #CCC;
+    }
