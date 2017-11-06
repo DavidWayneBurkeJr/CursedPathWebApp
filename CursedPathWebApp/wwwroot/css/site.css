@@ -237,3 +237,60 @@ iframe {
     .posts li:first-child {
         border-top: 1px solid #CCC;
     }
+
+.FixedHeightContainer {
+    width: 80%;
+    margin: 0 auto;
+    padding: 3px;
+    background: rgba(0,0,0,.3);
+    border: solid;
+    border-color: black;
+    max-height: 500px;
+}
+
+#textInput {
+    width: 90%;
+    margin: 3px auto;
+    margin-top: 5px;
+    padding: 3px;
+    background-color: dimgrey;
+    color: black;
+}
+
+#publishPostButton{
+    background-color: black;
+    border-color: black;
+    float: right;
+    margin: 0 auto;
+}
+
+#postsList li:nth-child(2n+1) {
+    position: relative;
+    display: block;
+    padding: .9em .9em .9em 5em;
+    *padding: .4em;
+    margin: 1em 0;
+    background: #ddd;
+    color: black;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: all .5s ease-out;
+}
+
+#postsList li:nth-child(2n+0) {
+    position: relative;
+    display: block;
+    padding: .9em .9em .9em 5em;
+    *padding: .4em;
+    margin: 1em 0;
+    background: #818181;
+    color: black;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: all .5s ease-out;
+}
+
+.Content{
+    height: 400px;
+    overflow: auto;
+}
