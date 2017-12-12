@@ -108,7 +108,11 @@ iframe {
 .navbar {
     margin-bottom: 0;
     height: 100px;
-    position:absolute;
+    position: fixed;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
 }
 
 
@@ -255,6 +259,8 @@ iframe {
     padding: 3px;
     background-color: dimgrey;
     color: black;
+    overflow: auto;
+    resize: none;
 }
 
 #publishPostButton{
@@ -275,6 +281,7 @@ iframe {
     text-decoration: none;
     border-radius: .3em;
     transition: all .5s ease-out;
+    box-shadow: 30px, 10px, 10px, black;
 }
 
 #postsList li:nth-child(2n+0) {
@@ -288,9 +295,43 @@ iframe {
     text-decoration: none;
     border-radius: .3em;
     transition: all .5s ease-out;
+    box-shadow: 30px, 10px, 10px, black;
 }
 
 .Content{
     height: 400px;
     overflow: auto;
+}
+
+.panel-primary {
+    border-color: black;
+}
+.panel-heading.panel-head {
+    background-color: #515151;
+    border-color: #000;
+}
+
+h1 {
+    font-family: 'Schoolbell', cursive;
+    font-size: 50px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 15px;
+    text-shadow: 5px 5px 5px #000000;
+}
+h2 {
+    text-align: center;
+    font-family: 'Schoolbell', cursive;
+    text-shadow: 5px 5px 5px #000000;
+}
+.pcenter{
+    text-align: center;
+}
+footer {
+    background-color: rgba(0, 0, 0, 0.82);
+    margin-top: -20px;
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-bottom: -10px;
+    padding-top: 50px;
 }

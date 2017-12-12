@@ -3,4 +3,3 @@ $('#pullBtn').click(function () {
     $('#slideout').toggleClass('on');
     $('#sidebar').toggleClass('on');
 });
-

@@ -2,21 +2,29 @@
     ViewData["Title"] = "Chat";
 }
 
+
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.min.js"></script>
 <script src="/signalr/hubs"></script>
-<h1>Messages</h1>
+<h1>MEsSaGes</h1>
 
 <div class="FixedHeightContainer">
-    <div class="Content">
+    <div class="Content" id="chatCont">
         <ul id="postsList" class="rounded-list"></ul>
     </div>
-    <input id="textInput" type="text" placeholder="Enter Message" />
+    <textarea id="textInput" placeholder="Enter Message"></textarea>
 
     <button class="btn btn-primary" id="publishPostButton">Send</button>
     </div>
 
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#textInput").keypress(function (event) {
+                if (event.which == 13) {
+                    $("#publishPostButton").click();
+                }
+            });
+        });
         $.ajax({
             url: '/chat/',
             method: 'GET',
@@ -34,6 +42,7 @@
         function addPost(post) {
             console.log('New post from server: ', post);
             $("#postsList").append('<li>' + '(' + post.timestamp + ') ' + post.author + ': ' + post.content + '</li>');
+            updateScroll();
         }
 
         // Connect to the broadcaster on the server
@@ -56,7 +65,8 @@
                 dataType: 'json'
             }).fail(function (e) {
                 console.log(e);
-            });
+                });
+            document.getElementById("textInput").value = "";
         });
 
         // This console.logs a lot of helpful debugging info!
@@ -73,5 +83,11 @@
         }).fail(function (error) {
             // Just in case we fail to connect
             console.log('Failed to start connection! Error: ', error);
-        });
+            });
+
+        function updateScroll() {
+            var element = document.getElementById("chatCont");
+            element.scrollTop = element.scrollHeight;
+        }
+       
     </script>

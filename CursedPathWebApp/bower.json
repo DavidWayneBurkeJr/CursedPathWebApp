@@ -7,6 +7,11 @@
     "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
     "signalr": "2.2.2",
-    "knockout": "3.4.2"
+    "knockout": "3.4.2",
+    "bootstrap-datetimepicker": "v0.0.11"
+  },
+  "resolutions": {
+    "bootstrap": "3.3.7",
+    "jquery": ">=1.6.4"
   }
 }

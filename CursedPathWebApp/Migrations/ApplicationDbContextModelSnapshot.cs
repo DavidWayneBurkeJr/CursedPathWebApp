@@ -143,6 +143,44 @@ namespace CursedPathWebApp.Data.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("CursedPathWebApp.Models.ScheduleListViewModel", b =>
+                {
+                    b.Property<int>("ShowId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<DateTime>("Time");
+
+                    b.Property<int>("VenueId");
+
+                    b.HasKey("ShowId");
+
+                    b.HasIndex("VenueId");
+
+                    b.ToTable("Schedule");
+                });
+
+            modelBuilder.Entity("CursedPathWebApp.Models.VenueModel", b =>
+                {
+                    b.Property<int>("VenueId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Comments");
+
+                    b.Property<string>("Location")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<int>("Rating");
+
+                    b.HasKey("VenueId");
+
+                    b.ToTable("Venue");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -243,6 +281,14 @@ namespace CursedPathWebApp.Data.Migrations
                     b.HasOne("CursedPathWebApp.Models.Post", "ParentPost")
                         .WithMany("Comments")
                         .HasForeignKey("ParentPostId");
+                });
+
+            modelBuilder.Entity("CursedPathWebApp.Models.ScheduleListViewModel", b =>
+                {
+                    b.HasOne("CursedPathWebApp.Models.VenueModel", "VenueModel")
+                        .WithMany()
+                        .HasForeignKey("VenueId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

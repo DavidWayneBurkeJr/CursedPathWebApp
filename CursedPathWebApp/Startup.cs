@@ -45,6 +45,11 @@ public class Startup
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
+        services.AddAuthentication().AddFacebook(facebookOptions =>
+        {
+            facebookOptions.AppId = "739730612902552";
+            facebookOptions.AppSecret = "d3e23c675563dd3b419264819888f712";
+        });
 
         var settings = new JsonSerializerSettings();
         settings.ContractResolver = new SignalRContractResolver();
@@ -87,13 +92,12 @@ ServiceLifetime.Transient));
         app.UseStaticFiles();
 
         app.UseIdentity();
-
         //  Add external authentication middleware below.To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
         app.UseMvc(routes =>
         {
             routes.MapRoute(
                 name: "default",
-                template: "{controller=ApplicationRole}/{action=Index}/{id?}");
+                template: "{controller=Home}/{action=Index}/{id?}");
         });
         app.UseSignalR();
         app.UseWebSockets();
