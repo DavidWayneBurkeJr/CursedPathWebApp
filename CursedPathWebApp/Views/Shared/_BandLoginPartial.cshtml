@@ -8,17 +8,21 @@
 {
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Schedule</a>
+        <a asp-area="" asp-controller="Schedule" asp-action="Index">Schedule</a>
         <a asp-area="" asp-controller="Band" asp-action="Chat">Message Board</a>
-        <a href="#">Personal Notes</a>
+        <a asp-area="" asp-controller="Setlist" asp-action="Index">Setlist</a>
     </div>
+    <button class="glyphButton" id="openButt" onclick="openNav()"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
+    
+}
+
+@if (User.IsInRole("Admin"))
+{
     <ul class="nav navbar-nav navbar-left">
-        <li><a asp-area="" asp-controller="Band" asp-action="Index">
-            <i class="glyphicon glyphicon-cd"></i>
-            <b>bANd PagE</b>
+        <li><a asp-area="" asp-controller="ApplicationRole" asp-action="Index">
+            <i class="glyphicon glyphicon-edit"></i>
+            <b>ADMIN PAGE</b>
             </a>
         </li>
     </ul>
-    <button class="glyphButton" onclick="openNav()"><i class="glyphicon glyphicon-menu-hamburger"></i></button>
-    
 }

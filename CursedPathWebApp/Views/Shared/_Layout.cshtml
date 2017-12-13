@@ -17,11 +17,12 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true"/>
     </environment>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body style="position:relative">
-    <div id="main">
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+<body style="position: relative; background-color: rgb(28, 26, 26); padding-top: 0px;">
+    <div id="main"style="margin-left: 0px; padding-right: 0px; padding-left: 0px; padding-top: 0px;">
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="myNav">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -40,8 +41,6 @@
                     <ul class="nav navbar-nav navbar-right">
 
                         <li><a asp-area="" asp-controller="Home" asp-action="Index">HoME</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="About">aBoUT</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">CoNtaCT</a></li>
 
                     </ul>
 
@@ -65,7 +64,18 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; 2017 - CursedPathWebApp</p>
+                <p class="pcenter">&copy; 2017 - CursedPathWebApp</p>
+                <p class="pcenter">Cursed Path is a Hardcore band from Pomeroy, Ohio</p>
+                <p class="pcenter">Thanks for checking us out!</p>
+                <p class="pcenter">
+                    <row>
+                        <a href="https://www.facebook.com/cursedpath/"><span class="fa fa-facebook-square" style="font-size:24px"></span></a>
+                        <a href="https://twitter.com/cursedpathhc"><span class="fa fa-twitter" style="font-size:24px"></span></a>
+                        <a href="https://www.instagram.com/cursedpathhc/"><span class="fa fa-instagram" style="font-size:24px"></span></a>
+                    </row>
+                </p>
+                <br />
+                <br />
             </footer>
         </div>
 

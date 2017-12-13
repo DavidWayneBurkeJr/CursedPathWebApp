@@ -17,6 +17,9 @@ namespace CursedPathWebApp.Data
         public DbSet<ApplicationRole> ApplicationRole { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<VenueModel> Venue { get; set; }
+        public DbSet<SongModel> Song { get; set; }
+        public DbSet<ScheduleListViewModel> Schedule { get; set; }
         public DbSet<BlogPost> BlogPosts { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -50,7 +53,6 @@ namespace CursedPathWebApp.Data
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
-
         }
     }
 }
