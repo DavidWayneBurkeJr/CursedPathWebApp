@@ -11,9 +11,10 @@ using System;
 namespace CursedPathWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171213001002_Blog2")]
+    partial class Blog2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,62 +169,6 @@ namespace CursedPathWebApp.Data.Migrations
                     b.ToTable("Posts");
                 });
 
-            modelBuilder.Entity("CursedPathWebApp.Models.ScheduleListViewModel", b =>
-                {
-                    b.Property<int>("ShowId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<DateTime>("Time");
-
-                    b.Property<int>("VenueId");
-
-                    b.HasKey("ShowId");
-
-                    b.HasIndex("VenueId");
-
-                    b.ToTable("Schedule");
-                });
-
-            modelBuilder.Entity("CursedPathWebApp.Models.SongModel", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Comments");
-
-                    b.Property<int>("Duration");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<string>("SongTitle");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Song");
-                });
-
-            modelBuilder.Entity("CursedPathWebApp.Models.VenueModel", b =>
-                {
-                    b.Property<int>("VenueId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Comments");
-
-                    b.Property<string>("Location")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<int>("Rating");
-
-                    b.HasKey("VenueId");
-
-                    b.ToTable("Venue");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -332,14 +277,6 @@ namespace CursedPathWebApp.Data.Migrations
                     b.HasOne("CursedPathWebApp.Models.Post", "ParentPost")
                         .WithMany("Comments")
                         .HasForeignKey("ParentPostId");
-                });
-
-            modelBuilder.Entity("CursedPathWebApp.Models.ScheduleListViewModel", b =>
-                {
-                    b.HasOne("CursedPathWebApp.Models.VenueModel", "VenueModel")
-                        .WithMany()
-                        .HasForeignKey("VenueId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -20,6 +20,7 @@ namespace CursedPathWebApp.Data
         public DbSet<VenueModel> Venue { get; set; }
         public DbSet<SongModel> Song { get; set; }
         public DbSet<ScheduleListViewModel> Schedule { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

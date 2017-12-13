@@ -5,14 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CursedPathWebApp.Models;
+using CursedPathWebApp.Data;
 
 namespace CursedPathWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext ctx)
+        {
+            _context = ctx;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            var model = new HomePageModel {
+                RecentBlogPosts = _context.BlogPosts.Where(post => !post.Deleted).OrderByDescending(post => post.DatePosted).Take(3).ToList()
+            };
+            return View(model);
         }
 
         public IActionResult About()

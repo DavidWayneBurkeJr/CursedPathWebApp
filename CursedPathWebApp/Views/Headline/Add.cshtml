@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Add Headline";
+}
+
+<h2>Manage</h2>
+
+@using (Html.BeginForm("Add", "Headline")) {
+    <div class="input-group">
+        @Html.Label("title", "Title")
+        @Html.TextBox("title", "")
+    </div>
+    <div class="input-group">
+        @Html.Label("contentHTML", "Content")
+        @Html.TextArea("contentHTML", "")
+    </div>
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
+}
+
