@@ -1,0 +1,20 @@
+﻿@model CursedPathWebApp.Models.BlogPost
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Manage</h2>
+
+@using (Html.BeginForm("Edit", "Headline")) {
+    @Html.Hidden("id", Model.Id)
+    <div class="input-group">
+        @Html.Label("title", "Title")
+        @Html.TextBox("title", Model.Title)
+    </div>
+    <div class="input-group">
+        @Html.Label("contentHTML", "Content")
+        @Html.TextArea("contentHTML", Model.ContentHTML)
+    </div>
+    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Save Changes</button>
+}
+

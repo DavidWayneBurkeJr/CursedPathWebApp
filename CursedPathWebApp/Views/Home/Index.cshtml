@@ -6,23 +6,30 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h2>Headlines</h2>
-        @if (Model.RecentBlogPosts.Count() > 0)
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Band Member")))
         {
-            foreach (BlogPost post in Model.RecentBlogPosts)
-            {
-                <section>
-                    <h3>@post.Title</h3>
-                    <div class="author">@post.Author.Name</div>
-                    @Html.Raw(@post.ContentHTML)
-                </section>
-            }
-            <div class="right">@Html.ActionLink("View Archive...", "BlogArchive")</div>
+            <h2>Headlines <a role="button" class="btn btn-default" href="/Headline/Manage"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> <span class="sr-only">Manage Headlines</span></a></h2>
         }
         else
         {
-            <p>There are no headlines.</p>
+            <h2>Headlines</h2>
         }
+        @if (Model.RecentBlogPosts.Count() > 0)
+    {
+        foreach (BlogPost post in Model.RecentBlogPosts)
+        {
+            <section style="background: #111 linear-gradient(#2c2a2a, #101010); padding: 1ex">
+                <h3>@post.Title</h3>
+                <div class="author"></div>
+                <p>@post.ContentHTML</p>
+            </section>
+    }
+    <div class="right">@Html.ActionLink("View Archive...", "BlogArchive")</div>
+}
+else
+{
+    <p>There are no headlines.</p>
+}
     </div>
     <div class="col-md-3">
         <h2>How to</h2>

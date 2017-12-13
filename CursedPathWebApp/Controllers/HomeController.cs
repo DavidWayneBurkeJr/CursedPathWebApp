@@ -21,7 +21,7 @@ namespace CursedPathWebApp.Controllers
         public IActionResult Index()
         {
             var model = new HomePageModel {
-                RecentBlogPosts = _context.BlogPosts.OrderByDescending(post => post.DatePosted).Take(3).ToList()
+                RecentBlogPosts = _context.BlogPosts.Where(post => !post.Deleted).OrderByDescending(post => post.DatePosted).Take(3).ToList()
             };
             return View(model);
         }

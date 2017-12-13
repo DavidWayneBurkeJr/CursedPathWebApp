@@ -1,0 +1,38 @@
+﻿@model IEnumerable<CursedPathWebApp.Models.BlogPost>
+@using CursedPathWebApp.Models
+@{
+    ViewBag.Title = "Manage Headlines";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <div class="btn-group">
+            @Html.ActionLink("Add", "Add", new { }, new { @class = "btn btn-primary" })
+        </div>
+
+        <table class="table table-bordered table-striped">
+            @foreach (BlogPost post in Model)
+            {
+                <tr>
+                    <td>
+                        @post.Title
+                    </td>
+                    <td>
+                        @post.DatePosted
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admin") || post.Author.Id == ViewBag.userId)
+                        {
+                            <div class="btn-group">
+                                @Html.ActionLink("Edit", "Edit", new { id = post.Id }, new { @class = "btn btn-secondary" })
+                                @Html.ActionLink("Delete", "Delete", new { id = post.Id }, new { @class = "btn btn-danger" })
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
