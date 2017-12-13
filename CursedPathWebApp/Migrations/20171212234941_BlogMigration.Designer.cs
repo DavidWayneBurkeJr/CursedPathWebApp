@@ -11,9 +11,10 @@ using System;
 namespace CursedPathWebApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171212234941_BlogMigration")]
+    partial class BlogMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,22 +113,15 @@ namespace CursedPathWebApp.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AuthorId")
-                        .IsRequired();
-
                     b.Property<string>("ContentHTML")
                         .IsRequired();
 
                     b.Property<DateTime>("DatePosted");
 
-                    b.Property<bool>("Deleted");
-
                     b.Property<string>("Title")
                         .IsRequired();
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.ToTable("BlogPosts");
                 });
@@ -261,14 +255,6 @@ namespace CursedPathWebApp.Data.Migrations
                     b.HasOne("CursedPathWebApp.Data.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("CursedPathWebApp.Models.BlogPost", b =>
-                {
-                    b.HasOne("CursedPathWebApp.Data.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CursedPathWebApp.Models.Comment", b =>

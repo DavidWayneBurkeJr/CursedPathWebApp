@@ -17,6 +17,7 @@ namespace CursedPathWebApp.Data
         public DbSet<ApplicationRole> ApplicationRole { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
