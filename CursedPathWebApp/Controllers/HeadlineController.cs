@@ -92,5 +92,12 @@ namespace CursedPathWebApp.Controllers
             }
             return RedirectToAction("Manage");
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Archive()
+        {
+            return View(_context.BlogPosts.Where(post => !post.Deleted).OrderByDescending(post => post.DatePosted).ToList());
+        }
     }
 }

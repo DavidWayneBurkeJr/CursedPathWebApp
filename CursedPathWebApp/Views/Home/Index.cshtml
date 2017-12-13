@@ -14,22 +14,26 @@
         {
             <h2>Headlines</h2>
         }
+        <div id="homepage-headlines">
         @if (Model.RecentBlogPosts.Count() > 0)
-    {
-        foreach (BlogPost post in Model.RecentBlogPosts)
         {
-            <section style="background: #111 linear-gradient(#2c2a2a, #101010); padding: 1ex">
-                <h3>@post.Title</h3>
-                <div class="author"></div>
-                <p>@post.ContentHTML</p>
-            </section>
-    }
-    <div class="right">@Html.ActionLink("View Archive...", "BlogArchive")</div>
-}
-else
-{
-    <p>There are no headlines.</p>
-}
+            foreach (BlogPost post in Model.RecentBlogPosts)
+            {
+                <section style="padding: 1ex">
+                    <h3 class="homepage-post-title">@post.Title</h3>
+                    <div class="homepage-post-date">@post.DatePosted</div>
+                    <div class="homepage-post-content">
+                        @Html.Raw(post.ContentHTML)
+                    </div>
+                </section>
+            }
+            <div class="right">@Html.ActionLink("View Archive...", "Archive", "Headline")</div>
+        }
+        else
+        {
+            <p>There are no headlines.</p>
+        }
+        </div>
     </div>
     <div class="col-md-3">
         <h2>How to</h2>

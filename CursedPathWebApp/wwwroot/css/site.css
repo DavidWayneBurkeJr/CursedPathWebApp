@@ -335,3 +335,25 @@ footer {
     margin-bottom: -10px;
     padding-top: 50px;
 }
+
+.homepage-post-title, .archive-post-title {
+    font-family: 'Schoolbell', cursive;
+}
+
+.homepage-post-date, .archive-post-date {
+    font-style: italic;
+    font-size: 80%;
+}
+
+.homepage-post-content, .archive-post-content {
+    margin: 1.5ex 0;
+}
+
+#homepage-headlines {
+    background: #202020;
+    padding: 1.2ex;
+}
+
+#homepage-headlines section, #archive-container .row {
+    border-bottom: 2px solid #303030;
+}
