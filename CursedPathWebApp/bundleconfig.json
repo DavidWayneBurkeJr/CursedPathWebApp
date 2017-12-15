@@ -17,6 +17,7 @@
       "wwwroot/js/board.js",
       "wwwroot/js/nav.js",
       "wwwroot/js/song-index.js"
+
     ],
     // Optionally specify minification options
     "minify": {
