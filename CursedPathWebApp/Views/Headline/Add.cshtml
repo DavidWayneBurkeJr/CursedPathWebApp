@@ -3,16 +3,36 @@
 }
 
 <h2>Manage</h2>
+<link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
 
+<div class="panel panel-primary" style="padding: 2ex">
 @using (Html.BeginForm("Add", "Headline")) {
+    @Html.Hidden("contentHTML", "", new { id = "hiddenHTML" })
     <div class="input-group">
         @Html.Label("title", "Title")
-        @Html.TextBox("title", "")
+        @Html.TextBox("title", "", null, new { @class = "form-control" })
     </div>
-    <div class="input-group">
-        @Html.Label("contentHTML", "Content")
-        @Html.TextArea("contentHTML", "")
+    <div>&nbsp;</div>
+    <div id="richtext">
     </div>
+    <div>&nbsp;</div>
     <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
 }
-
+<script type="text/javascript" src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
+<script type="text/javascript">
+    var quill = new Quill('#richtext', {
+        modules: {
+            toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['link'],
+                [{ 'size': ['small', 'normal', 'large'] }]
+            ]
+        },
+        theme: 'snow'
+    });
+    quill.on('text-change', function (delta, oldDelta, source) {
+        var html = quill.container.querySelector('.ql-editor').innerHTML;
+        $('#hiddenHTML').val(html);
+    });
+</script>
+</div>
