@@ -75,6 +75,7 @@ ServiceLifetime.Transient));
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
     {
+        app.UseStaticFiles();
         loggerFactory.AddConsole(Configuration.GetSection("Logging"));
         loggerFactory.AddDebug();
 
@@ -89,7 +90,7 @@ ServiceLifetime.Transient));
             app.UseExceptionHandler("/Home/Error");
         }
 
-        app.UseStaticFiles();
+        
 
         app.UseIdentity();
         //  Add external authentication middleware below.To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
