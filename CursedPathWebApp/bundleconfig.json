@@ -11,7 +11,12 @@
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
-      "wwwroot/js/site.js"
+      "wwwroot/js/site.js",
+      "wwwroot/js/application-role-index.js",
+      "wwwroot/js/user-index.js",
+      "wwwroot/js/board.js",
+      "wwwroot/js/nav.js",
+      "wwwroot/js/song-index.js"
 
     ],
     // Optionally specify minification options
@@ -21,25 +26,5 @@
     },
     // Optionally generate .map file
     "sourceMap": false
-  },
-  {
-    "outputFileName": "wwwroot/js/nav.js",
-    "inputFiles": [ "/wwwroot/js/nav.js" ]
-  },
-  {
-    "outputFileName": "wwwroot/js/board.js",
-    "inputFiles": [ "/wwwroot/js/board.js" ]
-  },
-  {
-    "outputFileName": "wwwroot/js/application-role-index.js",
-    "inputFiles": [ "/wwwroot/js/application-role-index.js" ]
-  },
-  {
-    "outputFileName": "wwwroot/js/song-index.js",
-    "inputFiles": [ "/wwwroot/js/song-index.js" ]
-  },
-  {
-    "outputFileName": "wwwroot/js/user-index.js",
-    "inputFiles": [ "/wwwroot/js/user-index.js" ]
   }
 ]
