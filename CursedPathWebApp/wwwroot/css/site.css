@@ -81,7 +81,7 @@ body {
 
 
 
-iframe {
+.iframe {
     margin: auto;
 }
 
@@ -356,4 +356,9 @@ footer {
 
 #homepage-headlines section, #archive-container .row {
     border-bottom: 2px solid #303030;
+}
+
+.col-centered {
+    float: none;
+    margin: auto;
 }

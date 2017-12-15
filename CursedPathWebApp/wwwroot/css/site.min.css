@@ -82,7 +82,7 @@ body {
 
 
 
-iframe {
+.iframe {
     margin: auto;
 }
 
@@ -340,4 +340,8 @@ footer {
     margin-left: -15px;
     margin-bottom: -10px;
     padding-top: 50px;
+}
+.col-centered {
+    float: none;
+    margin: auto;
 }

@@ -13,7 +13,10 @@
     "inputFiles": [
       "wwwroot/js/site.js",
       "wwwroot/js/application-role-index.js",
-      "wwwroot/js/user-index.js"
+      "wwwroot/js/user-index.js",
+      "wwwroot/js/board.js",
+      "wwwroot/js/nav.js",
+      "wwwroot/js/song-index.js"
     ],
     // Optionally specify minification options
     "minify": {
