@@ -1,10 +1,40 @@
 ﻿@model IEnumerable<SongModel>
 @using CursedPathWebApp.Models
-@{
-    ViewData["Title"] = "Index";
-}
+@using CursedPathWebApp.Code
 
-<h2>Index</h2>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var table = $('#myDataTable').DataTable({
+            rowReorder: true,
+            "paging": false,
+            "searching": false,
+            "columnDefs": [
+                { "orderable": false, "targets": [1,2,3,4] }
+            ]
+
+        });
+        table.on('row-reorder', function (dragEvent, data, nodes) {
+            for (var i = 0, ien = data.length; i < ien; i++) {
+                var rowData = table.row(data[i].node).data();
+                $.ajax({
+                    type: "GET",
+                    cache: false,
+                    contentType: "application/json; charset=utf-8",
+                    url: '/Setlist/UpdateOrder',
+                    data: { Id: table.row(data[i].node).id(), fromPosition: data[i].oldData, toPosition: data[i].newData },
+                    dataType: "json"
+                });
+            }
+        });
+    });
+
+</script>
+
+<h2>Setlist</h2>
+<h2>
+    <a class="btn btn-primary" style="background-color:black" id="createSongModal" data-toggle="modal" asp-action="AddEditSong" data-target="#modal-action-song"><i class="glyphicon glyphicon-plus-sign"></i>Add a Song</a>
+</h2>
 <table id="myDataTable" class="display">
     <thead>
         <tr>
@@ -12,29 +42,28 @@
             <th>Title</th>
             <th>Duration</th>
             <th>Comments</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var song in Model)
         {
             <tr id="@song.Id">
-                <tr>@song.OrderId</tr>
-                <tr>@song.SongTitle</tr>
-                <tr>@song.Duration</tr>
-                <tr>@song.Comments</tr>
+                <td>@song.OrderId</td>
+                <td>@song.SongTitle</td>
+                <td>@song.Duration.ToString("H:mm")</td>
+                <td>@song.Comments</td>
+                <td><a class="btn btn-primary" style="background-color:darkred" id="deleteSongModal" data-toggle="modal" asp-action="DeleteSong" asp-route-id="@song.Id" data-target="#modal-action-song">
+                    <i class="glyphicon glyphicon-trash">
+                    </i></a></td>
             </tr>
         }
     </tbody>
 </table>
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action-song", AreaLabeledId = "modal-action-song-label", Size = ModalSize.Medium })
 
-<script type="text/javascript">
+@section scripts
+    {
+    <script src="~/js/song-index.js" asp-append-version="true"></script>
+}
 
-    $(document).ready(function () {
-        $('#myDataTable').dataTable().rowReordering();
-    });
-   
-        $(document).ready(function () {
-            $('#myDataTable').dataTable().rowReordering({ sURL: "/Setlist/UpdateOrder" });
-    });
-
-</script>

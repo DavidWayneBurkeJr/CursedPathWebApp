@@ -1,0 +1,11 @@
+﻿@model string
+@using CursedPathWebApp.Models
+
+<form asp-action="DeleteSong" role="form">
+    @Html.Partial("_ModalHeader", new ModalHeader { Heading = "Delete Song" })
+
+    <div class="modal-body form-horizontal">
+        Are you sure?
+    </div>
+    @Html.Partial("_ModalFooter", new ModalFooter { SubmitButtonText = "Delete" })
+</form>
